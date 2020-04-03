@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2020 at 11:10 PM
+-- Generation Time: Apr 03, 2020 at 07:07 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -33,23 +33,11 @@ CREATE TABLE `examination` (
   `UserProfileId` varchar(225) NOT NULL,
   `SourceOfExam` varchar(50) NOT NULL,
   `HasSymptoms` tinyint(1) NOT NULL,
-  `HasSneezing` tinyint(1) NOT NULL,
-  `HasRunningNose` tinyint(1) NOT NULL,
-  `HasProductiveSputum` tinyint(1) NOT NULL,
-  `HasLostSmell` tinyint(1) NOT NULL,
-  `HasLostTaste` tinyint(1) NOT NULL,
-  `HasMuscleWeakness` tinyint(1) NOT NULL,
-  `HasDiarrhoea` tinyint(1) NOT NULL,
-  `HasAbdominalPains` tinyint(1) NOT NULL,
-  `HasFatigue` tinyint(1) NOT NULL,
-  `HasShortnessOfBreath` tinyint(1) NOT NULL,
-  `HasContinuousDryCough` tinyint(1) NOT NULL,
-  `HasHighFever` tinyint(1) NOT NULL,
-  `MeasuredTempereture` tinyint(1) NOT NULL,
+  `SymptomId` int(11) NOT NULL,
+  `Answer` varchar(225) NOT NULL,
+  `SecondaryAnswer` varchar(225) NOT NULL,
   `IsPregnant` tinyint(1) NOT NULL,
   `PregancyPeriod` int(10) DEFAULT NULL,
-  `HasUnderLyingCondition` tinyint(1) NOT NULL,
-  `HasBeenHospitalized` tinyint(1) NOT NULL,
   `HasTravelled` tinyint(1) NOT NULL,
   `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `CreateUserId` varchar(225) NOT NULL,
@@ -192,6 +180,19 @@ CREATE TABLE `status` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sysmptom`
+--
+
+CREATE TABLE `sysmptom` (
+  `SymptomId` varchar(225) NOT NULL,
+  `Name` varchar(225) NOT NULL,
+  `Question` varchar(225) NOT NULL,
+  `SecondaryQuestion` varchar(225) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `travelhistory`
 --
 
@@ -308,6 +309,12 @@ ALTER TABLE `role`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`StatusId`);
+
+--
+-- Indexes for table `sysmptom`
+--
+ALTER TABLE `sysmptom`
+  ADD PRIMARY KEY (`SymptomId`);
 
 --
 -- Indexes for table `travelhistory`
