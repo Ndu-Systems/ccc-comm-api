@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2020 at 09:43 AM
+-- Generation Time: Apr 04, 2020 at 10:23 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -25,6 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `AddressId` varchar(225) NOT NULL,
+  `City` varchar(100) NOT NULL,
+  `Town` varchar(100) NOT NULL,
+  `AddressLine` text NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `answer`
 --
 
@@ -40,6 +58,13 @@ CREATE TABLE `answer` (
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answer`
+--
+
+INSERT INTO `answer` (`AnswerId`, `TestId`, `QuestionId`, `Answer`, `SecondaryAnswer`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('09fcdbb7-764a-4444-b995-48f17f8d4d88', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '09fcdbb7-764a-11ea-b995-48f17f8d4d88', 'Yes', 'For past 2 days', '2020-04-04 10:21:20', '09fcdbb7-222-11ea-b995-48f17f8d4d88', '2020-04-04 10:21:20', '09fcdbb7-222-11ea-b995-48f17f8d4d88', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +171,8 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`QuestionId`, `Name`, `Question`, `SecondaryQuestion`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
-('5b81d169-7646-11ea-b995-48f17f8d4d77', 'Fever', 'Do you have Fever', 'What is your temperature measurements?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
+('09fcdbb7-764a-11ea-b995-48f17f8d4d88', 'Cough', 'Do you Cough?', 'For how long now?', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
+('5b81d169-7646-11ea-b995-48f17f8d4d77', 'Fever', 'Do you have Fever?', 'What is your temperature measurements?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
 ('5b81d169-7646-11ea-b995-48f17f8d4d88', 'Pregnancy ', 'Are you pregnant?', 'How long have you been pregnant?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', 1);
 
 -- --------------------------------------------------------
@@ -214,6 +240,13 @@ CREATE TABLE `test` (
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`TestId`, `UserProfileId`, `AddressId`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('09fcdbb7-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 10:20:24', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 10:20:24', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1);
 
 -- --------------------------------------------------------
 
@@ -286,6 +319,12 @@ CREATE TABLE `userprofile` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`AddressId`);
 
 --
 -- Indexes for table `answer`

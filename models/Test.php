@@ -1,5 +1,5 @@
 <?php
-class Question
+class Test
 {
     //DB Stuff
     private $conn;
@@ -12,22 +12,22 @@ class Question
     //Add user
     public function add(
         $Name,
-        $Question,
-        $SecondaryQuestion,
+        $test,
+        $Secondarytest,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
 
     ) {
 
-        $QuestionId = getUuid($this->conn);
+        $TestId = getUuid($this->conn);
 
         $query = "
-        INSERT INTO question(
-            QuestionId,
+        INSERT INTO test(
+            TestId,
             Name,
-            Question,
-            SecondaryQuestion,
+            test,
+            Secondarytest,
             CreateUserId,
             ModifyUserId,
             StatusId
@@ -39,15 +39,15 @@ class Question
         try {
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
-                $QuestionId,
+                $TestId,
                 $Name,
-                $Question,
-                $SecondaryQuestion,
+                $test,
+                $Secondarytest,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId
             ))) {
-                return $this->getById($QuestionId);
+                return $this->getById($TestId);
             }
         } catch (Exception $e) {
             return array("ERROR", $e);
@@ -57,53 +57,53 @@ class Question
 
 
 
-    public function updatequestion(
-        $QuestionId,
+    public function updatetest(
+        $TestId,
         $Name,
-        $Question,
-        $SecondaryQuestion,
+        $test,
+        $Secondarytest,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
     ) {
         $query = "UPDATE
-        question
+        test
     SET
         Name = ?,
-        Question = ?,
-        SecondaryQuestion = ?,
+        test = ?,
+        Secondarytest = ?,
         CreateUserId = ?,
         ModifyUserId = ?,
         StatusId= ?
         WHERE
-        QuestionId = ?
+        TestId = ?
          ";
 
         try {
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
                 $Name,
-                $Question,
-                $SecondaryQuestion,
+                $test,
+                $Secondarytest,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId,
-                $QuestionId,
+                $TestId,
 
             ))) {
-                return $this->getById($QuestionId);
+                return $this->getById($TestId);
             }
         } catch (Exception $e) {
             return array("ERROR", $e);
         }
     }
 
-    public function getById($QuestionId)
+    public function getById($TestId)
     {
-        $query = "SELECT * FROM question WHERE QuestionId =?";
+        $query = "SELECT * FROM test WHERE TestId =?";
 
         $stmt = $this->conn->prepare($query);
-        $stmt->execute(array($QuestionId));
+        $stmt->execute(array($TestId));
 
         if ($stmt->rowCount()) {
             return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -112,7 +112,7 @@ class Question
 
     public function getAll($StatusId)
     {
-        $query = "SELECT * FROM question WHERE StatusId =?";
+        $query = "SELECT * FROM test WHERE StatusId =?";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute(array($StatusId));
