@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2020 at 07:07 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Apr 04, 2020 at 09:43 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,23 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `examination`
+-- Table structure for table `answer`
 --
 
-CREATE TABLE `examination` (
-  `ExaminationId` varchar(225) NOT NULL,
-  `UserProfileId` varchar(225) NOT NULL,
-  `SourceOfExam` varchar(50) NOT NULL,
-  `HasSymptoms` tinyint(1) NOT NULL,
-  `SymptomId` int(11) NOT NULL,
-  `Answer` varchar(225) NOT NULL,
-  `SecondaryAnswer` varchar(225) NOT NULL,
-  `IsPregnant` tinyint(1) NOT NULL,
-  `PregancyPeriod` int(10) DEFAULT NULL,
-  `HasTravelled` tinyint(1) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `answer` (
+  `AnswerId` varchar(225) NOT NULL,
+  `TestId` varchar(225) NOT NULL,
+  `QuestionId` varchar(225) NOT NULL,
+  `Answer` varchar(50) NOT NULL,
+  `SecondaryAnswer` varchar(500) DEFAULT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -62,9 +57,9 @@ CREATE TABLE `hospital` (
   `City` varchar(50) NOT NULL,
   `Province` varchar(50) NOT NULL,
   `PostCode` varchar(10) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -82,9 +77,9 @@ CREATE TABLE `hospitalization` (
   `HospitalRecordNumber` varchar(25) DEFAULT NULL,
   `TreatedInICU` tinyint(1) NOT NULL,
   `RecievedVantilation` tinyint(1) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -105,9 +100,9 @@ CREATE TABLE `organization` (
   `City` varchar(50) NOT NULL,
   `Province` varchar(50) NOT NULL,
   `PostCode` varchar(10) DEFAULT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,12 +116,38 @@ CREATE TABLE `organization` (
 CREATE TABLE `preexistingcondition` (
   `ConditionId` varchar(225) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question`
+--
+
+CREATE TABLE `question` (
+  `QuestionId` varchar(225) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Question` varchar(500) NOT NULL,
+  `SecondaryQuestion` varchar(500) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `question`
+--
+
+INSERT INTO `question` (`QuestionId`, `Name`, `Question`, `SecondaryQuestion`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('5b81d169-7646-11ea-b995-48f17f8d4d77', 'Fever', 'Do you have Fever', 'What is your temperature measurements?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
+('5b81d169-7646-11ea-b995-48f17f8d4d88', 'Pregnancy ', 'Are you pregnant?', 'How long have you been pregnant?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -138,9 +159,9 @@ CREATE TABLE `riskcountry` (
   `CountryId` varchar(225) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `RiskLevel` varchar(15) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -154,9 +175,9 @@ CREATE TABLE `riskcountry` (
 CREATE TABLE `role` (
   `RoleId` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -170,9 +191,9 @@ CREATE TABLE `role` (
 CREATE TABLE `status` (
   `StatusId` int(11) NOT NULL,
   `Name` varchar(225) NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `IsActive` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -180,14 +201,18 @@ CREATE TABLE `status` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sysmptom`
+-- Table structure for table `test`
 --
 
-CREATE TABLE `sysmptom` (
-  `SymptomId` varchar(225) NOT NULL,
-  `Name` varchar(225) NOT NULL,
-  `Question` varchar(225) NOT NULL,
-  `SecondaryQuestion` varchar(225) DEFAULT NULL
+CREATE TABLE `test` (
+  `TestId` varchar(225) NOT NULL,
+  `UserProfileId` varchar(225) NOT NULL,
+  `AddressId` varchar(50) NOT NULL,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `CreateUserId` varchar(225) NOT NULL,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
+  `ModifyUserId` varchar(225) NOT NULL,
+  `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -202,9 +227,9 @@ CREATE TABLE `travelhistory` (
   `UserProfileId` varchar(225) NOT NULL,
   `TravelDate` datetime NOT NULL,
   `ReturnDate` datetime NOT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -220,9 +245,9 @@ CREATE TABLE `underlyingcondition` (
   `ConditionId` int(11) NOT NULL,
   `UserProfileId` varchar(225) NOT NULL,
   `DiagnosedDate` date DEFAULT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -251,9 +276,9 @@ CREATE TABLE `userprofile` (
   `ParentSurname` varchar(50) DEFAULT NULL,
   `RoleId` int(11) NOT NULL,
   `OrganizationId` varchar(225) DEFAULT NULL,
-  `CreateDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
-  `ModifyDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -263,10 +288,10 @@ CREATE TABLE `userprofile` (
 --
 
 --
--- Indexes for table `examination`
+-- Indexes for table `answer`
 --
-ALTER TABLE `examination`
-  ADD PRIMARY KEY (`ExaminationId`);
+ALTER TABLE `answer`
+  ADD PRIMARY KEY (`AnswerId`);
 
 --
 -- Indexes for table `hospital`
@@ -293,6 +318,12 @@ ALTER TABLE `preexistingcondition`
   ADD PRIMARY KEY (`ConditionId`);
 
 --
+-- Indexes for table `question`
+--
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`QuestionId`);
+
+--
 -- Indexes for table `riskcountry`
 --
 ALTER TABLE `riskcountry`
@@ -311,10 +342,10 @@ ALTER TABLE `status`
   ADD PRIMARY KEY (`StatusId`);
 
 --
--- Indexes for table `sysmptom`
+-- Indexes for table `test`
 --
-ALTER TABLE `sysmptom`
-  ADD PRIMARY KEY (`SymptomId`);
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`TestId`);
 
 --
 -- Indexes for table `travelhistory`
