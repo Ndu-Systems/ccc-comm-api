@@ -1,4 +1,6 @@
 <?php
+include_once 'Answer.php';
+
 class Test
 {
     //DB Stuff
@@ -11,9 +13,8 @@ class Test
 
     //Add user
     public function add(
-        $Name,
-        $test,
-        $Secondarytest,
+        $UserProfileId,
+        $AddressId,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
@@ -25,24 +26,22 @@ class Test
         $query = "
         INSERT INTO test(
             TestId,
-            Name,
-            test,
-            Secondarytest,
+            UserProfileId,
+            AddressId,
             CreateUserId,
             ModifyUserId,
             StatusId
         )
         VALUES(
-        ?,?,?,?,?,?,?
+        ?,?,?,?,?,?
          )
 ";
         try {
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
                 $TestId,
-                $Name,
-                $test,
-                $Secondarytest,
+                $UserProfileId,
+                $AddressId,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId
@@ -59,9 +58,8 @@ class Test
 
     public function updatetest(
         $TestId,
-        $Name,
-        $test,
-        $Secondarytest,
+        $UserProfileId,
+        $AddressId,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
@@ -69,12 +67,12 @@ class Test
         $query = "UPDATE
         test
     SET
-        Name = ?,
-        test = ?,
-        Secondarytest = ?,
+        TestId = ?,
+        UserProfileId = ?,
+        AddressId = ?,
         CreateUserId = ?,
         ModifyUserId = ?,
-        StatusId= ?
+        StatusId = ?
         WHERE
         TestId = ?
          ";
@@ -82,9 +80,8 @@ class Test
         try {
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
-                $Name,
-                $test,
-                $Secondarytest,
+                $UserProfileId,
+                $AddressId,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId,
@@ -118,7 +115,14 @@ class Test
         $stmt->execute(array($StatusId));
 
         if ($stmt->rowCount()) {
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tests =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $detailedTests = array();
+            foreach ($tests as $test) {
+                $answer = new Answer($this->conn);
+                $test["Answers"] =  $answer->getByTestId($test["TestId"]);
+                array_push($detailedTests, $test);
+            }
+            return $detailedTests;
         }
     }
 }
