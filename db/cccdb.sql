@@ -236,7 +236,7 @@ CREATE TABLE `status` (
 CREATE TABLE `test` (
   `TestId` varchar(225) NOT NULL,
   `UserProfileId` varchar(225) NOT NULL,
-  `AddressId` varchar(50) NOT NULL,
+  `AddressId` varchar(255) NOT NULL,
   `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
   `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
