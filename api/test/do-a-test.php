@@ -11,6 +11,7 @@ $CreateUserId = $data->CreateUserId;
 $ModifyUserId = $data->ModifyUserId;
 $StatusId = $data->StatusId;
 $answers = $data->answers;
+$user = $data->user;
 
 //connect to db
 $database = new Database();
@@ -18,6 +19,12 @@ $db = $database->connect();
 
 // create user first to get UserId
 $test = new Test($db);
+
+// If it other person you better add the user fists, whith userId 10 to indicate it is the othe person.
+
+if($user){
+    
+}
 
 $result = $test->add(
     $UserProfileId,
