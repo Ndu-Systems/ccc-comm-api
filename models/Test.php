@@ -1,5 +1,6 @@
 <?php
 include_once 'Answer.php';
+include_once 'UserProfile.php';
 
 class Test
 {
@@ -119,7 +120,9 @@ class Test
             $detailedTests = array();
             foreach ($tests as $test) {
                 $answer = new Answer($this->conn);
+                $user = new UserProfile($this->conn);
                 $test["Answers"] =  $answer->getByTestId($test["TestId"]);
+                $test["User"] =  $user->getUserById($test["UserProfileId"]);
                 array_push($detailedTests, $test);
             }
             return $detailedTests;
