@@ -26,7 +26,9 @@ $Surname,
 $DOB,
 $Age,
 $ContactNumber,
-$CreateUserId);
+$CreateUserId,
+1
+);
 
  echo json_encode($result);
 

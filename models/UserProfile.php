@@ -34,7 +34,8 @@ class UserProfile
         $DOB,
         $Age,
         $ContactNumber,
-        $CreateUserId  
+        $CreateUserId  ,
+        $StatusId
     )
     {
         # code...
@@ -67,7 +68,7 @@ class UserProfile
                 $Age,
                 $ContactNumber,
                 $CreateUserId,
-                1
+                $StatusId
             ))) {
                 return $this->getUserById($UserId);
             }

@@ -10,8 +10,8 @@ $AddressId = $data->AddressId;
 $CreateUserId = $data->CreateUserId;
 $ModifyUserId = $data->ModifyUserId;
 $StatusId = $data->StatusId;
-$answers = $data->answers;
-$user = $data->user;
+$answers = $data->Answers;
+$user = $data->User;
 
 //connect to db
 $database = new Database();
@@ -22,8 +22,21 @@ $test = new Test($db);
 
 // If it other person you better add the user fists, whith userId 10 to indicate it is the othe person.
 
-if($user){
-    
+if ($user) {
+    $userProfile = new UserProfile($db);
+
+    $addNewUser = $userProfile->SignUp(
+        $user->Email,
+        $user->Password,
+        $user->FirstName,
+        $user->Surname,
+        $user->DOB,
+        $user->Age,
+        $user->ContactNumber,
+        $CreateUserId,
+        10
+    );
+    $UserProfileId = $addNewUser['UserProfileId'];
 }
 
 $result = $test->add(
@@ -52,9 +65,3 @@ foreach ($answers as $answer) {
 
 $thistest = $test->getAll(1);
 echo json_encode($thistest);
-
-
- 
- 
-
-
