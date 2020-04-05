@@ -76,6 +76,16 @@ class UserProfile
             return array("ERROR", $e);
         }
     }
+
+    public function getAllUsers($StatusId)
+    {
+        $query = "SELECT * FROM userprofile WHERE StatusId =?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(array($StatusId));
+        if($stmt->rowCount()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
     
     public function getUserById($UserId)
     {
