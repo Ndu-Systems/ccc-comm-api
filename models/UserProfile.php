@@ -14,7 +14,7 @@ class UserProfile
         $Password
     ) {
         # code...
-     
+
 
         $query = "SELECT 
                 * FROM userprofile where Email = ?
@@ -34,10 +34,9 @@ class UserProfile
         $DOB,
         $Age,
         $ContactNumber,
-        $CreateUserId  ,
+        $CreateUserId,
         $StatusId
-    )
-    {
+    ) {
         # code...
         if ($this->getByEmail($Email) > 0) {
             return "user already exists";
@@ -55,7 +54,7 @@ class UserProfile
             CreateUserId,          
             StatusId
         ) VALUES (?,?,?,?,?,?,?,?,?,?)";
- 
+
         try {
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
@@ -82,11 +81,11 @@ class UserProfile
         $query = "SELECT * FROM userprofile WHERE StatusId =?";
         $stmt = $this->conn->prepare($query);
         $stmt->execute(array($StatusId));
-        if($stmt->rowCount()) {
+        if ($stmt->rowCount()) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
-    
+
     public function getUserById($UserId)
     {
         $query = "SELECT * FROM userprofile WHERE UserProfileId =?";
@@ -100,7 +99,7 @@ class UserProfile
     }
 
     public function getByEmail($Email)
-    {        
+    {
         $query = "SELECT 
                 * FROM userprofile where Email = ?";
         $stmt = $this->conn->prepare($query);
@@ -108,6 +107,83 @@ class UserProfile
 
         if ($stmt->rowCount()) {
             return $stmt->fetch(PDO::FETCH_ASSOC);;
+        }
+    }
+
+    public function addUser(
+        $FirstName,
+        $Surname,
+        $Age,
+        $DOB,
+        $Sex,
+        $ContactNumber,
+        $Email,
+        $Password,
+        $Address,
+        $City,
+        $Province,
+        $PostCode,
+        $ParentFirstName,
+        $ParentSurname,
+        $RoleId,
+        $OrganizationId,
+        $CreateUserId,
+        $StatusId
+    ) {
+         # code...
+         if ($this->getByEmail($Email) > 0) {
+            return "user already exists";
+        }
+        $UserId = getUuid($this->conn);
+        $query = "INSERT INTO userprofile (
+            UserProfileId,
+            FirstName,
+            Surname,
+            Email,
+            Password,
+            DOB,
+            Age,
+            Sex,
+            ContactNumber,
+            Address,
+            City,
+            Province,
+            PostCode,
+            ParentFirstName,
+            ParentSurname,
+            OrganizationId,
+            RoleId,
+            CreateUserId,          
+            StatusId
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            $stmt = $this->conn->prepare($query);
+            if ($stmt->execute(array(
+                $UserId,
+                $FirstName,
+                $Surname,
+                $Email,
+                $Password,
+                $DOB,
+                $Age,
+                $Sex,
+                $ContactNumber,
+                $Address,
+                $City,
+                $Province,
+                $PostCode,
+                $ParentFirstName,
+                $ParentSurname,
+                $OrganizationId,
+                $RoleId,
+                $CreateUserId,
+                $StatusId
+            ))) {
+                return $this->getUserById($UserId);
+            }
+        } catch (Exception $e) {
+            return array("ERROR", $e);
         }
     }
 }
