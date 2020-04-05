@@ -14,6 +14,9 @@ class Question
         $Name,
         $Question,
         $SecondaryQuestion,
+        $Option1,
+        $Option2,
+        $Option3,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
@@ -28,12 +31,15 @@ class Question
             Name,
             Question,
             SecondaryQuestion,
+            Option1,
+            Option2,
+            Option3,
             CreateUserId,
             ModifyUserId,
             StatusId
         )
         VALUES(
-        ?,?,?,?,?,?,?
+        ?,?,?,?,?,?,?,?,?,?
          )
 ";
         try {
@@ -43,6 +49,9 @@ class Question
                 $Name,
                 $Question,
                 $SecondaryQuestion,
+                $Option1,
+                $Option2,
+                $Option3,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId
@@ -62,6 +71,9 @@ class Question
         $Name,
         $Question,
         $SecondaryQuestion,
+        $Option1,
+        $Option2,
+        $Option3,
         $CreateUserId,
         $ModifyUserId,
         $StatusId
@@ -72,6 +84,9 @@ class Question
         Name = ?,
         Question = ?,
         SecondaryQuestion = ?,
+        Option1 = ?,
+        Option2 = ?,
+        Option3 = ?,
         CreateUserId = ?,
         ModifyUserId = ?,
         StatusId= ?
@@ -85,6 +100,9 @@ class Question
                 $Name,
                 $Question,
                 $SecondaryQuestion,
+                $Option1,
+                $Option2,
+                $Option3,
                 $CreateUserId,
                 $ModifyUserId,
                 $StatusId,

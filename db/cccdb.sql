@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2020 at 11:52 AM
+-- Generation Time: Apr 05, 2020 at 06:55 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -64,10 +64,10 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`AnswerId`, `TestId`, `QuestionId`, `Answer`, `SecondaryAnswer`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
-('09fcdbb7-764a-4444-b995-48f17f8d4d88', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '09fcdbb7-764a-11ea-b995-48f17f8d4d88', 'Yes', 'For past 2 days', '2020-04-04 10:21:20', '09fcdbb7-222-11ea-b995-48f17f8d4d88', '2020-04-04 10:21:20', '09fcdbb7-222-11ea-b995-48f17f8d4d88', 1),
-('1ca9b318-7659-11ea-b995-48f17f8d4d88', '1ca96ba2-7659-11ea-b995-48f17f8d4d88', '5b81d169-7646-11ea-b995-48f17f8d4d88', 'Yes', 'For past 8 months', '2020-04-04 11:46:09', '09fcdbb7-222-11ea-b995-48f17f8d4d88', '2020-04-04 11:46:09', '09fcdbb7-222-11ea-b995-48f17f8d4d88', 1),
-('8c0ad33d-7659-11ea-b995-48f17f8d4d88', '8c0a8fa9-7659-11ea-b995-48f17f8d4d88', '5b81d169-7646-11ea-b995-48f17f8d4d88', 'Yes', 'For past 8 months', '2020-04-04 11:49:16', '09fcdbb7-222-11ea-b995-48f17f8d4d88', '2020-04-04 11:49:16', '09fcdbb7-222-11ea-b995-48f17f8d4d88', 1),
-('8c0b2469-7659-11ea-b995-48f17f8d4d88', '8c0a8fa9-7659-11ea-b995-48f17f8d4d88', '5b81d169-7646-11ea-b995-48f17f8d4d77', 'Yes', 'I did not measure', '2020-04-04 11:49:16', '09fcdbb7-222-11ea-b995-48f17f8d4d88', '2020-04-04 11:49:16', '09fcdbb7-222-11ea-b995-48f17f8d4d88', 1);
+('c9cc7074-775d-11ea-850d-48f17f8d4d88', 'c9cbba65-775d-11ea-850d-48f17f8d4d88', 'xxx-Cough', 'yes', 'for past 2 days', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', 1),
+('c9ccad66-775d-11ea-850d-48f17f8d4d88', 'c9cbba65-775d-11ea-850d-48f17f8d4d88', 'xxx-Fever', 'yes', 'It feels hot', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', 1),
+('c9cced19-775d-11ea-850d-48f17f8d4d88', 'c9cbba65-775d-11ea-850d-48f17f8d4d88', 'xxx-Pregnancy ', 'no', '', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', 1),
+('c9cd26f5-775d-11ea-850d-48f17f8d4d88', 'c9cbba65-775d-11ea-850d-48f17f8d4d88', 'xxx-Sleep', 'no', '', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', '2020-04-05 18:52:08', '230d45fc-773e-11ea-850d-48f17f8d4d88', 1);
 
 -- --------------------------------------------------------
 
@@ -162,6 +162,9 @@ CREATE TABLE `question` (
   `Name` varchar(100) NOT NULL,
   `Question` varchar(500) NOT NULL,
   `SecondaryQuestion` varchar(500) NOT NULL,
+  `Option1` varchar(100) DEFAULT NULL,
+  `Option2` varchar(100) DEFAULT NULL,
+  `Option3` varchar(100) DEFAULT NULL,
   `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
   `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
@@ -173,10 +176,11 @@ CREATE TABLE `question` (
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`QuestionId`, `Name`, `Question`, `SecondaryQuestion`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
-('09fcdbb7-764a-11ea-b995-48f17f8d4d88', 'Cough', 'Do you Cough?', 'For how long now?', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
-('5b81d169-7646-11ea-b995-48f17f8d4d77', 'Fever', 'Do you have Fever?', 'What is your temperature measurements?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
-('5b81d169-7646-11ea-b995-48f17f8d4d88', 'Pregnancy ', 'Are you pregnant?', 'How long have you been pregnant?', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', 1);
+INSERT INTO `question` (`QuestionId`, `Name`, `Question`, `SecondaryQuestion`, `Option1`, `Option2`, `Option3`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('xxx-Cough', 'Cough', 'Do you Cough?', 'For how long now?', 'since today', 'for past 2 days', 'more than 3 days now', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:58:15', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
+('xxx-Fever', 'Fever', 'Do you have Fever?', 'What is your temperature measurements?', 'I feels normal', 'It feels hot', 'Very hot', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d78\r\n', 1),
+('xxx-Pregnancy ', 'Pregnancy ', 'Are you pregnant?', 'How long have you been pregnant?', 'less than a month', 'less than 6 months', 'Above 7 months', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', 1),
+('xxx-Sleep', 'Trouble sleeping', 'Do you struggle to sleep?', 'How long have you been struggling with sleep?', 'Only last night', '2 to 4 nights ', 'More than 4 nights', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', '2020-04-04 09:30:47', '681cc293-7646-11ea-b995-48f17f8d4d88\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -236,7 +240,7 @@ CREATE TABLE `status` (
 CREATE TABLE `test` (
   `TestId` varchar(225) NOT NULL,
   `UserProfileId` varchar(225) NOT NULL,
-  `AddressId` varchar(255) NOT NULL,
+  `AddressId` varchar(50) NOT NULL,
   `CreateDate` datetime NOT NULL DEFAULT current_timestamp(),
   `CreateUserId` varchar(225) NOT NULL,
   `ModifyDate` datetime NOT NULL DEFAULT current_timestamp(),
@@ -249,12 +253,7 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`TestId`, `UserProfileId`, `AddressId`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
-('06a680bc-7659-11ea-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:45:32', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:45:32', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1),
-('09fcdbb7-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 10:20:24', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 10:20:24', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1),
-('1ca96ba2-7659-11ea-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:46:09', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:46:09', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1),
-('8c0a8fa9-7659-11ea-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:49:16', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:49:16', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1),
-('f19b400d-7658-11ea-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:44:57', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:44:57', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1),
-('fa27dfc3-7658-11ea-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '4325323-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:45:11', '09fcdbb7-764a-7815-b995-48f17f8d4d88', '2020-04-04 11:45:11', '09fcdbb7-764a-7815-b995-48f17f8d4d88', 1);
+('c9cbba65-775d-11ea-850d-48f17f8d4d88', '230d45fc-773e-11ea-850d-48f17f8d4d88', '', '2020-04-05 18:52:08', '', '2020-04-05 18:52:08', '', 1);
 
 -- --------------------------------------------------------
 
@@ -323,6 +322,14 @@ CREATE TABLE `userprofile` (
   `ModifyUserId` varchar(225) NOT NULL,
   `StatusId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userprofile`
+--
+
+INSERT INTO `userprofile` (`UserProfileId`, `FirstName`, `Surname`, `Age`, `DOB`, `Sex`, `ContactNumber`, `Email`, `Password`, `Address`, `City`, `Province`, `PostCode`, `ParentFirstName`, `ParentSurname`, `RoleId`, `OrganizationId`, `CreateDate`, `CreateUserId`, `ModifyDate`, `ModifyUserId`, `StatusId`) VALUES
+('230d45fc-773e-11ea-850d-48f17f8d4d88', 'Test user', 'user', 0, '1989-12-31', '', '9898832133', 'admin@ccc.com', '1234', NULL, '', '', NULL, NULL, NULL, 0, NULL, '2020-04-05 15:05:34', 'sys', '2020-04-05 15:05:34', '', 1),
+('e92c44a6-7726-11ea-850d-48f17f8d4d88', 'Ndumiso', 'Mthembu', 0, '1989-12-31', '', '0842529472', 'ndu@mail.com', '1993', NULL, '', '', NULL, NULL, NULL, 0, NULL, '2020-04-05 12:19:19', 'sys', '2020-04-05 12:19:19', '', 1);
 
 --
 -- Indexes for dumped tables

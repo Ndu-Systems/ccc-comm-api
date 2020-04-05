@@ -9,6 +9,9 @@ $QuestionId = $data->QuestionId;
 $Name = $data->Name;
 $Question = $data->Question;
 $SecondaryQuestion = $data->SecondaryQuestion;
+$Option1 = $data->Option1;
+$Option2 = $data->Option2;
+$Option3 = $data->Option3;
 $CreateUserId = $data->CreateUserId;
 $ModifyUserId = $data->ModifyUserId;
 $StatusId = $data->StatusId;
@@ -24,6 +27,9 @@ $result = $question->updatequestion(
     $Name,
     $Question,
     $SecondaryQuestion,
+    $Option1,
+    $Option2,
+    $Option3,
     $CreateUserId,
     $ModifyUserId,
     $StatusId
