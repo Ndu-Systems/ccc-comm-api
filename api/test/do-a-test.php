@@ -6,6 +6,7 @@ include_once '../../models/Answer.php';
 $data = json_decode(file_get_contents("php://input"));
 
 $UserProfileId = $data->UserProfileId;
+$Outcome = $data->Outcome;
 $AddressId = $data->AddressId;
 $CreateUserId = $data->CreateUserId;
 $ModifyUserId = $data->ModifyUserId;
@@ -41,6 +42,7 @@ if ($user) {
 
 $result = $test->add(
     $UserProfileId,
+    $Outcome,
     $AddressId,
     $CreateUserId,
     $ModifyUserId,

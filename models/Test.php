@@ -15,6 +15,7 @@ class Test
     //Add user
     public function add(
         $UserProfileId,
+        $Outcome,
         $AddressId,
         $CreateUserId,
         $ModifyUserId,
@@ -28,13 +29,14 @@ class Test
         INSERT INTO test(
             TestId,
             UserProfileId,
+            Outcome,
             AddressId,
             CreateUserId,
             ModifyUserId,
             StatusId
         )
         VALUES(
-        ?,?,?,?,?,?
+        ?,?,?,?,?,?,?
          )
 ";
         try {
@@ -42,6 +44,7 @@ class Test
             if ($stmt->execute(array(
                 $TestId,
                 $UserProfileId,
+                $Outcome,
                 $AddressId,
                 $CreateUserId,
                 $ModifyUserId,
@@ -60,6 +63,7 @@ class Test
     public function updatetest(
         $TestId,
         $UserProfileId,
+        $Outcome,
         $AddressId,
         $CreateUserId,
         $ModifyUserId,
@@ -70,6 +74,7 @@ class Test
     SET
         TestId = ?,
         UserProfileId = ?,
+        Outcome = ?,
         AddressId = ?,
         CreateUserId = ?,
         ModifyUserId = ?,
@@ -82,6 +87,7 @@ class Test
             $stmt = $this->conn->prepare($query);
             if ($stmt->execute(array(
                 $UserProfileId,
+                $Outcome,
                 $AddressId,
                 $CreateUserId,
                 $ModifyUserId,
