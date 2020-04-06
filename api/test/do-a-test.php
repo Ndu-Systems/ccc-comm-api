@@ -66,4 +66,5 @@ foreach ($answers as $answer) {
 }
 
 $thistest = $test->getAll(1);
+$thistest = $test->getById($TestId);
 echo json_encode($thistest);
