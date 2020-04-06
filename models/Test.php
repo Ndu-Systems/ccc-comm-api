@@ -134,4 +134,25 @@ class Test
             return $detailedTests;
         }
     }
+
+    public function getByUserId($UserProfileId)
+    {
+        $query = "SELECT * FROM test WHERE StatusId =? and UserProfileId = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute(array(1, $UserProfileId));
+
+        if ($stmt->rowCount()) {
+            $tests =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $detailedTests = array();
+            foreach ($tests as $test) {
+                $answer = new Answer($this->conn);
+                $user = new UserProfile($this->conn);
+                $test["Answers"] =  $answer->getByTestId($test["TestId"]);
+                $test["User"] =  $user->getUserById($UserProfileId);
+                array_push($detailedTests, $test);
+            }
+            return $detailedTests;
+        }
+    }
 }
