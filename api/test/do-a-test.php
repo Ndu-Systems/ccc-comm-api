@@ -65,5 +65,5 @@ foreach ($answers as $answer) {
     );
 }
 
-$thistest = $test->getAll(1);
+$thistest = $test->getByUserId($UserProfileId);
 echo json_encode($thistest);
