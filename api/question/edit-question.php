@@ -9,6 +9,7 @@ $QuestionId = $data->QuestionId;
 $Name = $data->Name;
 $Question = $data->Question;
 $SecondaryQuestion = $data->SecondaryQuestion;
+$Severity = $data->Severity;
 $Option1 = $data->Option1;
 $Option2 = $data->Option2;
 $Option3 = $data->Option3;
@@ -27,6 +28,7 @@ $result = $question->updatequestion(
     $Name,
     $Question,
     $SecondaryQuestion,
+    $Severity,
     $Option1,
     $Option2,
     $Option3,
