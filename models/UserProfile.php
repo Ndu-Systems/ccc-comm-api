@@ -132,7 +132,7 @@ class UserProfile
     ) {
          # code...
          if ($this->getByEmail($Email) > 0) {
-            return "user already exists";
+            return "user already exists with this email address";
         }
         $UserId = getUuid($this->conn);
         $query = "INSERT INTO userprofile (
