@@ -36,7 +36,7 @@ if ($user) {
         $CreateUserId,
         10
     );
-    $UserProfileId = $addNewUser['UserProfileId'];
+    $UserProfileId = $addNewUser["UserProfileId"];
 }
 
 $result = $test->add(
