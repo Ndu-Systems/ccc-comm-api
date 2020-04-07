@@ -34,6 +34,10 @@ if ($user) {
         $user->DOB,
         $user->Age,
         $user->ContactNumber,
+        $Address,
+        $City,
+        $Province,
+        $PostCode,
         $CreateUserId,
         10
     );

@@ -46,6 +46,7 @@ class UserProfile
             return "user already exists";
         }
         $UserId = getUuid($this->conn);
+        $RoleId = 1;
         $query = "INSERT INTO userprofile (
             UserProfileId,
             FirstName,
@@ -60,8 +61,9 @@ class UserProfile
             Province,
             PostCode,
             CreateUserId,          
-            StatusId
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            StatusId,
+            RoleId
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             $stmt = $this->conn->prepare($query);
@@ -79,7 +81,8 @@ class UserProfile
                 $Province,
                 $PostCode,
                 $CreateUserId,
-                $StatusId
+                $StatusId,
+                $RoleId
             ))) {
                 return $this->getUserById($UserId);
             }
