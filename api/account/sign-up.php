@@ -12,6 +12,10 @@ $Age = $data->Age;
 $DOB = $data->DOB;
 $ContactNumber = $data->ContactNumber;
 $CreateUserId = $data->CreateUserId;
+$Address = $data->Address;
+$City = $data->City;
+$Province = $data->Province;
+$PostCode = $data->PostCode;
 
 $database = new Database();
 $db = $database->connect();
@@ -26,6 +30,10 @@ $Surname,
 $DOB,
 $Age,
 $ContactNumber,
+$Address ,
+$City ,
+$Province ,
+$PostCode ,
 $CreateUserId,
 1
 );

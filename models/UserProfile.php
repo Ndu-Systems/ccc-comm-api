@@ -34,6 +34,10 @@ class UserProfile
         $DOB,
         $Age,
         $ContactNumber,
+        $Address,
+        $City,
+        $Province,
+        $PostCode,
         $CreateUserId,
         $StatusId
     ) {
@@ -49,11 +53,15 @@ class UserProfile
             Email,
             Password,
             DOB,
-            Age,
+            Age,            
             ContactNumber,
+            Address,
+            City,
+            Province,
+            PostCode,
             CreateUserId,          
             StatusId
-        ) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             $stmt = $this->conn->prepare($query);
@@ -66,6 +74,10 @@ class UserProfile
                 $DOB,
                 $Age,
                 $ContactNumber,
+                $Address,
+                $City,
+                $Province,
+                $PostCode,
                 $CreateUserId,
                 $StatusId
             ))) {
@@ -130,8 +142,8 @@ class UserProfile
         $CreateUserId,
         $StatusId
     ) {
-         # code...
-         if ($this->getByEmail($Email) > 0) {
+        # code...
+        if ($this->getByEmail($Email) > 0) {
             return "user already exists with this email address";
         }
         $UserId = getUuid($this->conn);
