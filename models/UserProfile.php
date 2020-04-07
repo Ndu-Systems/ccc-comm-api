@@ -78,9 +78,9 @@ class UserProfile
 
     public function getAllUsers($StatusId)
     {
-        $query = "SELECT * FROM userprofile WHERE StatusId =?";
+        $query = "SELECT * FROM userprofile WHERE StatusId in (?,?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute(array($StatusId));
+        $stmt->execute(array($StatusId,10));
         if ($stmt->rowCount()) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
