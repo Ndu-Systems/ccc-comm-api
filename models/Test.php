@@ -141,10 +141,9 @@ class Test
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute(array(1, $UserProfileId));
-
+        $detailedTests = Array();
         if ($stmt->rowCount()) {
             $tests =  $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $detailedTests = array();
             foreach ($tests as $test) {
                 $answer = new Answer($this->conn);
                 $user = new UserProfile($this->conn);
